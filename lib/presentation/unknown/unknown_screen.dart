@@ -6,15 +6,20 @@ class UnknownScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('Unknown page'),
-        ElevatedButton.icon(
-          onPressed: () => Get.offAllNamed('/home'),
-          icon: const Icon(Icons.home),
-          label: const Text('Home Page'),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Unknown page'),
+            ElevatedButton.icon(
+              onPressed: () => Get.offAllNamed('/home'),
+              icon: const Icon(Icons.home),
+              label: const Text('Home Page'),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
