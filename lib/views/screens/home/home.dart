@@ -1,41 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../helpers/getx_controller.dart';
-import '../../../models/stores_model.dart';
+import 'package:nearby_me/helpers/home_controller.dart';
 
 import 'local_widgets/stores_list.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
 
-  MyController getController = Get.put<MyController>(MyController());
+  HomeController homeController = Get.put<HomeController>(HomeController());
 
   final TextEditingController _searchController = TextEditingController();
-
-  final List<StoresModel> _mockData = [
-    // StoresModel(
-    //   name: 'Coffee Shop',
-    //   address: 'Tafazoli blv, Laleh street, No. 53',
-    //   rate: 8.2,
-    //   phone: 'phone',
-    //   reviews: 'reviews',
-    // ),
-    // StoresModel(
-    //   name: 'Coffee Net',
-    //   address: 'Tafazoli blv, Laleh street, No. 65',
-    //   rate: 7.6,
-    //   phone: 'phone',
-    //   reviews: 'reviews',
-    // ),
-    // StoresModel(
-    //   name: 'Barber Shop',
-    //   address: 'Tafazoli blv, Laleh street, No. 78',
-    //   rate: 6.5,
-    //   phone: 'phone',
-    //   reviews: 'reviews',
-    // ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +29,7 @@ class Home extends StatelessWidget {
             child: TextFormField(
               controller: _searchController,
               autofocus: true,
-              onChanged: getController.updateQuery,
+              onChanged: homeController.updateQuery,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(),
@@ -66,7 +40,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-          StoresList(stores: _mockData),
+          const StoresList(),
         ],
       ),
     );
