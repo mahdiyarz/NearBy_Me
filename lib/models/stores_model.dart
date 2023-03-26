@@ -1,7 +1,7 @@
 class StoresModel {
   final String name;
   final String address;
-  final int rate;
+  final double rate;
   final String phone;
   final String reviews;
   StoresModel({
