@@ -1,3 +1,4 @@
 class ApiConstant {
-  static const String searchStores = '/businesses/search';
+  static const String searchStores = 'search';
+  static const String storeReviews = 'reviews';
 }
