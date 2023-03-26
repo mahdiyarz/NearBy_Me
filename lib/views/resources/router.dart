@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:nearby_me/helpers/datials_screen/details_binding.dart';
 
 import '../screens/details/details_screen.dart';
 import '../screens/home/home.dart';
@@ -15,6 +16,7 @@ class AppRouteName {
     GetPage(
       name: detailsScreen,
       page: () => const DetailsScreen(),
+      binding: DetailsBinding(),
     ),
   ];
 }
