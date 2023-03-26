@@ -21,7 +21,7 @@ class StoresList extends StatelessWidget {
           arguments: stores[index],
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        trailing: Text(stores[index].rate.toString()),
+        trailing: Text(stores[index].rating.toString()),
         title: Text(stores[index].name),
         subtitle: Text(stores[index].address),
       ),

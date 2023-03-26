@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/stores_model.dart';
+import '../../../models/stores_model.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
         children: [
           Text('Phone number is ${storeDetails.phone}'),
           const Text('Reviews:'),
-          Text(storeDetails.reviews),
+          const Text('storeDetails.reviews'),
         ],
       ),
     );
