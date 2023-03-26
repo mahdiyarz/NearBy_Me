@@ -12,12 +12,22 @@ class StoresList extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         if (controller.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return SizedBox(
+            height: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('Please Wait...')
+              ],
+            ),
           );
         }
         return ListView.builder(
-          scrollDirection: Axis.vertical,
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: controller.storesList.length,
           itemBuilder: (context, index) => ListTile(
@@ -27,28 +37,25 @@ class StoresList extends StatelessWidget {
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            trailing: Text(controller.storesList[index].rating.toString()),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Overall\nRating',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.black54,
+                  ),
+                ),
+                Text(controller.storesList[index].rating.toString()),
+              ],
+            ),
             title: Text(controller.storesList[index].name),
             subtitle: Text(controller.storesList[index].address),
           ),
         );
       },
     );
-
-    // ListView.builder(
-    //   scrollDirection: Axis.vertical,
-    //   shrinkWrap: true,
-    //   itemCount: stores.length,
-    //   itemBuilder: (context, index) => ListTile(
-    //     onTap: () => Get.toNamed(
-    //       '/details',
-    //       arguments: stores[index],
-    //     ),
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    //     trailing: Text(stores[index].rating.toString()),
-    //     title: Text(stores[index].name),
-    //     subtitle: Text(stores[index].address),
-    //   ),
-    // );
   }
 }
