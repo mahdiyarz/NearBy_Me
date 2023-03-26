@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nearby_me/models/stores_model.dart';
 
 class StoresList extends StatelessWidget {
@@ -15,6 +16,10 @@ class StoresList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: stores.length,
       itemBuilder: (context, index) => ListTile(
+        onTap: () => Get.toNamed(
+          '/details',
+          arguments: stores[index],
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         trailing: Text(stores[index].rate.toString()),
         title: Text(stores[index].name),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_me/presentation/details/details_screen.dart';
 import 'package:nearby_me/presentation/unknown/unknown_screen.dart';
 
 import '../presentation/home/home.dart';
@@ -13,8 +14,12 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/home',
-          page: () => const Home(),
+          page: () => Home(),
         ),
+        GetPage(
+          name: '/details',
+          page: () => const DetailsScreen(),
+        )
       ],
       initialRoute: '/home',
       unknownRoute: GetPage(
