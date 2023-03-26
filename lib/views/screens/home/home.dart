@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nearby_me/helpers/home_controller.dart';
+import 'package:nearby_me/helpers/home_screen/home_controller.dart';
 
 import 'local_widgets/stores_list.dart';
 
