@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../helpers/home_screen/home_controller.dart';
 import '../../../views/screens/home/local_widgets/stores_list.dart';
+import '../../widgets/api_error_handling.dart';
 import '../../widgets/loading_content.dart';
 import 'local_widgets/not_found_any_result.dart';
 import 'local_widgets/search_result_title.dart';
@@ -106,20 +107,27 @@ class HomeScreen extends StatelessWidget {
                 if (controller.isLoading) {
                   return const LoadingContents();
                 }
-                return controller.storesList.isEmpty
-                    ? controller.searchQuery.isEmpty
-                        ? const WaitingForSearch()
-                        : const NotFoundAnyResult()
-                    : Column(
-                        children: [
-                          SearchResultTitle(
-                            cityName: controller.searchQuery,
-                          ),
-                          StoresList(
-                            storesList: controller.storesList,
-                          ),
-                        ],
-                      );
+                if (controller.errorMessage.isNotEmpty) {
+                  return ApiErrorHandling(
+                    errorMessage: controller.errorMessage,
+                  );
+                } else {
+                  return controller.storesList.isEmpty &&
+                          controller.errorMessage.isEmpty
+                      ? controller.searchQuery.isEmpty
+                          ? const WaitingForSearch()
+                          : const NotFoundAnyResult()
+                      : Column(
+                          children: [
+                            SearchResultTitle(
+                              cityName: controller.searchQuery,
+                            ),
+                            StoresList(
+                              storesList: controller.storesList,
+                            ),
+                          ],
+                        );
+                }
               },
             ),
           ],
