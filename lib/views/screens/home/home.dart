@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                       final String location = await getLocation();
                       _searchController.text = '';
                       _searchController.text = location;
-                      await homeController.searchApi(location);
+                      await homeController.updateQuery(location);
                     },
                     icon: const Icon(Icons.location_pin),
                     style: IconButton.styleFrom(
