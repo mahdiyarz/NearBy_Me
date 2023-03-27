@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:nearby_me/views/extensions/space_xy_extension.dart';
 
 import '../../../helpers/home_screen/home_controller.dart';
 import '../../../views/screens/home/local_widgets/stores_list.dart';
@@ -14,8 +15,15 @@ import 'local_widgets/not_found_any_result.dart';
 import 'local_widgets/search_result_title.dart';
 import 'local_widgets/waiting_for_search.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isHighlighted = true;
 
   HomeController homeController = Get.put<HomeController>(HomeController());
 
@@ -86,19 +94,49 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () async {
+                  5.0.spaceX,
+                  InkWell(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onHighlightChanged: (value) {
+                      setState(() {
+                        isHighlighted = !isHighlighted;
+                      });
+                    },
+                    onTap: () async {
                       final String location = await getLocation();
                       _searchController.text = '';
                       _searchController.text = location;
                       await homeController.updateQuery(location);
                     },
-                    icon: const Icon(Icons.location_pin),
-                    style: IconButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    child: AnimatedContainer(
+                      margin: EdgeInsets.all(isHighlighted ? 0 : 2.5),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      duration: const Duration(milliseconds: 300),
+                      height: isHighlighted ? 48 : 43,
+                      width: isHighlighted ? 48 : 43,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Theme.of(context).colorScheme.primary,
+                        shape: BoxShape.rectangle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .shadow
+                                .withOpacity(.5),
+                            offset: const Offset(5, 10),
+                            blurRadius: 30,
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        Icons.location_on,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        size: isHighlighted ? 33 : 28,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
