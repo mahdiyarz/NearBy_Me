@@ -11,6 +11,7 @@ class HomeController extends GetxController {
 
   bool isLoading = false;
   List<StoresModel> storesList = [];
+  String errorMessage = '';
 
   _fetchStoresList(String location) async {
     isLoading = true;
@@ -19,10 +20,12 @@ class HomeController extends GetxController {
       if (dataState is SuccessfulDataState) {
         storesList = dataState.data;
         isLoading = false;
+        errorMessage = '';
         update();
       }
       if (dataState is FailureDataState) {
         storesList = [];
+        errorMessage = dataState.error!;
         isLoading = false;
         update();
       }
