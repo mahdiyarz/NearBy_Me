@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_me/views/resources/assets.dart';
-import '../../../extensions/space_xy_extension.dart';
 import 'package:nearby_me/helpers/home_screen/home_controller.dart';
 import 'package:nearby_me/models/stores_model.dart';
 import 'package:nearby_me/views/resources/router.dart';
+
+import '../../../widgets/loading_content.dart';
 
 class StoresList extends StatelessWidget {
   const StoresList({
@@ -18,17 +19,7 @@ class StoresList extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         if (controller.isLoading) {
-          return SizedBox(
-            height: screenWidth,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CircularProgressIndicator(),
-                5.0.spaceY,
-                const Text('Please Wait...')
-              ],
-            ),
-          );
+          return const LoadingContents();
         }
         return controller.storesList.isEmpty
             ? Container(

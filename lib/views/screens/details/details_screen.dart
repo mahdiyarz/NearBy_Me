@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../views/widgets/loading_content.dart';
 import '../../../helpers/details_screen/details_controller.dart';
-import '../../../views/extensions/space_xy_extension.dart';
 import '../../../models/stores_model.dart';
 
 import 'local_widgets/app_bar_title.dart';
@@ -27,16 +27,8 @@ class DetailsScreen extends StatelessWidget {
       body: GetBuilder<DetailsController>(
         builder: (controller) {
           if (controller.isLoading) {
-            return SizedBox(
-              height: MediaQuery.of(context).size.width,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(),
-                  5.0.spaceY,
-                  const Text('Please Wait...')
-                ],
-              ),
+            return const Center(
+              child: LoadingContents(),
             );
           }
           return ReviewsList(
