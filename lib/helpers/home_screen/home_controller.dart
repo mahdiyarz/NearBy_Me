@@ -24,10 +24,22 @@ class HomeController extends GetxController {
         update();
       }
       if (dataState is FailureDataState) {
-        storesList = [];
-        errorMessage = dataState.error!;
-        isLoading = false;
-        update();
+        if (location.isEmpty) {
+          storesList = [];
+          errorMessage = '';
+          isLoading = false;
+          update();
+        } else if (dataState.error!.contains('(error 400)')) {
+          storesList = [];
+          errorMessage = '';
+          isLoading = false;
+          update();
+        } else {
+          storesList = [];
+          errorMessage = dataState.error!;
+          isLoading = false;
+          update();
+        }
       }
     });
   }
