@@ -15,6 +15,7 @@ class HomeController extends GetxController {
 
   _fetchStoresList(String location) async {
     isLoading = true;
+
     update();
     await _apiServices.getStoresList(location).then((DataState dataState) {
       if (dataState is SuccessfulDataState) {
@@ -57,7 +58,7 @@ class HomeController extends GetxController {
     debounce(
       _searchQuery,
       searchApi,
-      time: const Duration(seconds: 2),
+      time: const Duration(seconds: 1),
     );
     super.onInit();
   }

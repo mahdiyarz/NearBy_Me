@@ -154,22 +154,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   return ApiErrorHandling(
                     errorMessage: controller.errorMessage,
                   );
+                } else if (controller.storesList.isEmpty &&
+                    controller.errorMessage.isEmpty) {
+                  return controller.searchQuery.isEmpty
+                      ? const WaitingForSearch()
+                      : const NotFoundAnyResult();
                 } else {
-                  return controller.storesList.isEmpty &&
-                          controller.errorMessage.isEmpty
-                      ? controller.searchQuery.isEmpty
-                          ? const WaitingForSearch()
-                          : const NotFoundAnyResult()
-                      : Column(
-                          children: [
-                            SearchResultTitle(
-                              cityName: controller.searchQuery,
-                            ),
-                            StoresList(
-                              storesList: controller.storesList,
-                            ),
-                          ],
-                        );
+                  return Column(
+                    children: [
+                      SearchResultTitle(
+                        cityName: controller.searchQuery,
+                      ),
+                      StoresList(
+                        storesList: controller.storesList,
+                      ),
+                    ],
+                  );
                 }
               },
             ),

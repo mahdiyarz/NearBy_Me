@@ -22,17 +22,5 @@ ThemeData getApplicationTheme() {
       shadow: ColorsManagement.shadow,
       outline: ColorsManagement.outline,
     ),
-
-    //* Elevated button theme
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        textStyle: TextStyle(color: ColorsManagement.onPrimary),
-        backgroundColor: ColorsManagement.primary,
-        foregroundColor: ColorsManagement.onPrimary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
-      ),
-    ),
   );
 }
