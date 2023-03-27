@@ -15,7 +15,8 @@ class NotFoundAnyResult extends StatelessWidget {
       children: [
         20.0.spaceY,
         Text(
-          'This location has no stores',
+          'This location has no stores\nNOTICE: Location character must be at least 4 digits!',
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).colorScheme.onBackground,
           ),
