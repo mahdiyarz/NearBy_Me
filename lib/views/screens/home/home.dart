@@ -105,9 +105,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     onTap: () async {
                       final String location = await getLocation();
-                      _searchController.text = '';
-                      _searchController.text = location;
-                      await homeController.updateQuery(location);
+                      if (location.contains('permission') ||
+                          location.contains('access')) {
+                        Get.defaultDialog(middleText: location);
+                      } else {
+                        _searchController.text = '';
+                        _searchController.text = location;
+                        await homeController.updateQuery(location);
+                      }
                     },
                     child: AnimatedContainer(
                       margin: EdgeInsets.all(isHighlighted ? 0 : 2.5),
@@ -196,19 +201,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
       switch (permission) {
         case LocationPermission.denied:
-          throw 'Location permission denied';
+          return 'Location permission denied\nplease change permission status on app setting.';
         case LocationPermission.deniedForever:
-          throw 'Location permission denied forever';
+          return 'Location permission denied forever\nplease change permission status on app setting.';
         case LocationPermission.always:
           return permissionAccepted();
         case LocationPermission.whileInUse:
           return permissionAccepted();
 
         default:
-          'Location permission';
+          'Can\'t access to your location';
       }
 
-      return 'Can\'t access to your local';
+      return 'Can\'t access to your location';
     } on PlatformException catch (e) {
       log(e.toString());
       return 'error';
