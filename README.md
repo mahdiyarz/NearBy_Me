@@ -1,6 +1,7 @@
 # NearBy Me
  
 Searching your around and choose a place to go with any details
+I use GetX state management, Dio library for Rest APIs and also Yelp fusion API. 
 
 
 ## Screenshots
